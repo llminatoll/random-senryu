@@ -1,9 +1,7 @@
 $(function() {
   $('#get_answer').on('click', function() {
     // 前回の結果を消す
-    $('#kami').remove();
-    $('#naka').remove();
-    $('#shimo').remove();
+    $('.senryu').remove();
 
     // 上の句・中の句・下の句をロードし、結果を表示する
     $.getJSON('js/senryu.json', function(senryu) {
@@ -17,11 +15,11 @@ $(function() {
       var naka = nakas[Math.floor(Math.random() * nakas.length)];
       var shimo = shimos[Math.floor(Math.random() * shimos.length)];
 
-      $main.hide();
-      $main.append($('<p>').prop('id', 'kami').html(kami));
-      $main.append($('<p>').prop('id', 'naka').html(naka));
-      $main.append($('<p>').prop('id', 'shimo').html(shimo));
-      $main.fadeIn();
+      // 描画
+      $main.append($('<p>').prop('id', 'kami').prop('class', 'senryu').html(kami).hide());
+      $main.append($('<p>').prop('id', 'naka').prop('class', 'senryu').html(naka).hide());
+      $main.append($('<p>').prop('id', 'shimo').prop('class', 'senryu').html(shimo).hide());
+      $('.senryu').fadeIn();
     }); // getJSON
   }); // on click
 }); // document ready
